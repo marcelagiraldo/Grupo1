@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControladoresVistas;
+package claseprimitivasgraficas;
 
 import Modelos.Circulo;
 import Modelos.Cuadrado;
 import Modelos.Imagen;
 import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -22,23 +24,36 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+//        Cuadrado cuad1= new Cuadrado(10, 10, Color.black, Color.green, 90);
+//        this.lienzo1.getFiguras().add(cuad1);
+//        Circulo cir1 = new Circulo(110,10,Color.CYAN,Color.GRAY,90);
+//        this.lienzo1.getFiguras().add(cir1);
+//        Imagen icono = new Imagen(10, 110, "src/Imagenes/rocket-league.png", 128, 128);
+//        this.lienzo1.getFiguras().add(icono);
         Scanner myObj = new Scanner(System.in);
         System.out.println("Escriba el coso");
         String coso = myObj.nextLine();
         System.out.println(coso);
         crearImagen(coso);
     }
-    public void crearImagen(){
+    
+    public void crearImagen(String vaina){
         int x = 0;
         int y = 0;
         int c=0;
+        Map<String, Color> map = new HashMap<String, Color>();
+        map.put("0", Color.white);
+        map.put("1", Color.red);
+        map.put("2", Color.black);
+        map.put("3",Color.orange);
+        map.put("4", Color.blue);
+        map.put("5", Color.yellow);
         for(int i=0;i<16;i++){
             for(int j=0;j<16;j++){
-                if(j!=6){
-                    Cuadrado objeto=new Cuadrado(x+y, c, Color.black, Color.white,30 );
+                    Cuadrado objeto=new Cuadrado(x+y, c, map.get("0"), map.get("1"),30 );
                     this.lienzo1.getFiguras().add(objeto);
-                    y+=30;
-                }
+                    y+=30;  
+                  
             }
             x=0;
             y=0;
@@ -54,17 +69,38 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lienzo1 = new claseprimitivasgraficas.Lienzo();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lienzo1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout lienzo1Layout = new javax.swing.GroupLayout(lienzo1);
+        lienzo1.setLayout(lienzo1Layout);
+        lienzo1Layout.setHorizontalGroup(
+            lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 659, Short.MAX_VALUE)
+        );
+        lienzo1Layout.setVerticalGroup(
+            lienzo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 496, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 955, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lienzo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(57, 57, 57))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 559, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lienzo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,5 +142,6 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private claseprimitivasgraficas.Lienzo lienzo1;
     // End of variables declaration//GEN-END:variables
 }

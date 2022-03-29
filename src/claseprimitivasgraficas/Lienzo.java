@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControladoresVistas;
+package claseprimitivasgraficas;
 
 import Modelos.Circulo;
 import Modelos.Cuadrado;
@@ -19,70 +19,49 @@ import java.util.LinkedList;
  * @author pipet
  */
 public class Lienzo extends javax.swing.JPanel {
-
     private LinkedList<FiguraGeometrica> figuras;
-
     /**
      * Creates new form Lienzo
      */
     public Lienzo() {
         initComponents();
-        this.figuras = new LinkedList<>();
+        this.figuras=new LinkedList<>();
     }
 
     @Override
-    public void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         dibujarFiguras(g);
     }
     public void dibujarFiguras(Graphics g){
-        for(FiguraGeometrica figuraActual: this.figuras){
-            if (figuraActual instanceof Cuadrado) {
-                dibujarCuadrado(g,(Cuadrado) figuraActual);
-            }else if (figuraActual instanceof Circulo) {
-                dibujarCirculo(g, (Circulo) figuraActual);
-            }else if (figuraActual instanceof Imagen) {
-                dibujarImagen(g,(Imagen)figuraActual);
+        for(FiguraGeometrica estaFigura:this.figuras){
+            if(estaFigura instanceof Cuadrado){
+                dibujarCuadrado(g, (Cuadrado)estaFigura);
+            }else if(estaFigura instanceof Circulo){
+                dibujarCirculo(g, (Circulo)estaFigura);
+            }else if(estaFigura instanceof Imagen){
+                dibujarImagen(g, (Imagen)estaFigura);
             }
         }
     }
-    public void dibujarCuadrado(Graphics g,Cuadrado elCuadrado){
-        g.setColor(elCuadrado.getColorRelleno());
-        g.fillRect(elCuadrado.getX(), 
-                   elCuadrado.getY(), 
-                   elCuadrado.getLado(), 
-                   elCuadrado.getLado());
-        g.setColor(elCuadrado.getBorde());
-        g.drawRect(elCuadrado.getX(), 
-                   elCuadrado.getY(), 
-                   elCuadrado.getLado(), 
-                   elCuadrado.getLado());
+    public void dibujarCuadrado(Graphics g, Cuadrado square){
+        g.setColor(square.getColorRelleno());
+        g.fillRect(square.getX(), square.getY(), square.getLado(), square.getLado());
+        g.setColor(square.getBorde());
+        g.drawRect(square.getX(), square.getY(), square.getLado(), square.getLado());
     }
-    public void dibujarCirculo(Graphics g,Circulo elCirculo){
+    public void dibujarCirculo(Graphics g, Circulo elCirculo){
         g.setColor(elCirculo.getColorRelleno());
-        g.drawOval(elCirculo.getX(),
-                   elCirculo.getY(),
-                   elCirculo.getRadio(),
-                   elCirculo.getRadio());
-        
+        g.fillOval(elCirculo.getX(), elCirculo.getY(), elCirculo.getRadio(), elCirculo.getRadio());
         g.setColor(elCirculo.getBorde());
-        g.fillOval(elCirculo.getX(),
-                   elCirculo.getY(),
-                   elCirculo.getRadio(),
-                   elCirculo.getRadio());
-        
+        g.drawOval(elCirculo.getX(), elCirculo.getY(), elCirculo.getRadio(), elCirculo.getRadio());
     }
-    public void dibujarImagen(Graphics g,Imagen laImagen){
-    Toolkit t = Toolkit.getDefaultToolkit ();
-    Image imagen = t.getImage (laImagen.getRuta());
-    g.drawImage(imagen,
-                laImagen.getX(),
-                laImagen.getY(),
-                laImagen.getAncho(),
-                laImagen.getAlto(),
-                this);
+    public void dibujarImagen(Graphics g, Imagen laImagen){
+        Toolkit t = Toolkit.getDefaultToolkit();
+        Image imagen = t.getImage(laImagen.getRuta());
+        g.drawImage(imagen, laImagen.getX(), laImagen.getY(), laImagen.getAncho(), laImagen.getAlto(), this);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,11 +75,11 @@ public class Lienzo extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 411, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
